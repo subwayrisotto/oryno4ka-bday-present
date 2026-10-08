@@ -52,7 +52,10 @@ function App() {
         <ChoiceStepsComponent onComplete={handleChoicesComplete} />
       )}
       {stage === "loading" && (
-        <LoadingComponent onDone={() => setStage("envelope")} />
+        <LoadingComponent
+          answers={answers}
+          onDone={() => setStage("envelope")}
+        />
       )}
       {stage === "envelope" && <EnvelopeComponent />}
       <FooterComponent />
