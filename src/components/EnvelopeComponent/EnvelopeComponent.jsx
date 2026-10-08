@@ -20,14 +20,15 @@ function EnvelopeComponent() {
     event.stopPropagation();
     setIsVideoPlaying(true);
   };
-
   useEffect(() => {
     const video = videoRef.current;
     if (!isVideoPlaying || !video) return;
 
-    const request =
-      video.requestFullscreen?.() ?? video.webkitEnterFullscreen?.();
-    request?.catch?.(() => {});
+    video.play().catch(() => {});
+
+    try {
+      video.requestFullscreen?.()?.catch?.(() => {});
+    } catch {}
   }, [isVideoPlaying]);
 
   return (
