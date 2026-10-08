@@ -24,7 +24,9 @@ function HeaderComponent() {
           aria-expanded={isOpen}
           onClick={() => setIsOpen(true)}
         >
-          <span className="header-heart">♥</span>
+          <span className="header-heart">
+            <img src="/assets/heart.svg" alt="Heart" />
+          </span>
           <span>psst... click me</span>
         </button>
       </header>

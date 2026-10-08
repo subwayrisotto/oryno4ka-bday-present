@@ -16,9 +16,13 @@ function FooterComponent() {
       </svg>
 
       <div className="footer-body">
-        <span className="footer-heart">♥</span>
+        <span className="footer-heart">
+          <img src="/assets/heart.svg" alt="Heart" />
+        </span>
         <p className="footer-text">Made with love, just for you</p>
-        <span className="footer-heart">♥</span>
+        <span className="footer-heart">
+          <img src="/assets/heart.svg" alt="Heart" />
+        </span>
       </div>
     </footer>
   );

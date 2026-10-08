@@ -464,6 +464,12 @@ label {
   animation: heartbeat-simple 1.4s ease-in-out infinite;
 }
 
+.footer-heart img {
+  width: 20px;
+  height: 20px;
+  fill: #a4133c;
+}
+
 .footer-heart:last-child {
   animation-delay: 0.7s;
 }
@@ -588,6 +594,12 @@ label {
 .header-heart {
   color: #a4133c;
   animation: heartbeat-simple 1.4s ease-in-out infinite;
+}
+
+.header-heart img {
+  width: 20px;
+  height: 20px;
+  fill: #a4133c;
 }
 
 .header-link:hover .header-heart {
