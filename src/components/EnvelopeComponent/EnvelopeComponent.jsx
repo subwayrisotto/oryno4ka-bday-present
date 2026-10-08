@@ -25,9 +25,11 @@ function EnvelopeComponent() {
     const video = videoRef.current;
     if (!isVideoPlaying || !video) return;
 
-    const request =
-      video.requestFullscreen?.() ?? video.webkitEnterFullscreen?.();
-    request?.catch?.(() => {});
+    video.play().catch(() => {});
+
+    try {
+      video.requestFullscreen?.()?.catch?.(() => {});
+    } catch {}
   }, [isVideoPlaying]);
 
   return (
