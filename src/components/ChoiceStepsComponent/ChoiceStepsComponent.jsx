@@ -3,6 +3,11 @@ import React, { useState } from "react";
 export const QUESTIONS = [
   { question: "Sea or Mountain?", options: ["1_1", "1_2"] },
   { question: "Who is the GOAT?", options: ["2_1", "2_2"] },
+  {
+    question: "Which song describes you the best?",
+    type: "text",
+    placeholder: "Type your answer...",
+  },
   { question: "Healthy shit or McDonald's?", options: ["3_1", "3_2"] },
   { question: "Gym or Gaming?", options: ["4_1", "4_2"] },
   { question: "Which type of evening do you prefer?", options: ["5_1", "5_2"] },

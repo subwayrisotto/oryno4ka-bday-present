@@ -1,14 +1,13 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import HeaderComponent from "../HeaderComponent/HeaderComponent";
 
-const VIDEO_SRC = "/assets/birthday.mp4";
-const POSTER_SRC = "/assets/letter-cover.jpg";
+const AUDIO_SRC = "/assets/greetings.mp3";
 
 function EnvelopeComponent() {
   const [isOpen, setIsOpen] = useState(false);
   const [heartFlight, setHeartFlight] = useState(0);
-  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
-  const videoRef = useRef(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef(null);
 
   const handleOpen = () => {
     if (isOpen) return;
@@ -16,21 +15,17 @@ function EnvelopeComponent() {
     setHeartFlight((f) => f + 1);
   };
 
-  const handlePlay = (event) => {
-    event.stopPropagation();
-    setIsVideoPlaying(true);
+  const toggleAudio = (event) => {
+    event.stopPropagation(); // don't trigger the envelope click
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    if (audio.paused) {
+      audio.play().catch(() => {});
+    } else {
+      audio.pause();
+    }
   };
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!isVideoPlaying || !video) return;
-
-    video.play().catch(() => {});
-
-    try {
-      video.requestFullscreen?.()?.catch?.(() => {});
-    } catch {}
-  }, [isVideoPlaying]);
 
   return (
     <div className="content">
@@ -45,19 +40,7 @@ function EnvelopeComponent() {
 
           <div className="letter">
             <div className="letter-content">
-              {isOpen && isVideoPlaying && (
-                <video
-                  ref={videoRef}
-                  className="letter-video visible"
-                  src={VIDEO_SRC}
-                  poster={POSTER_SRC}
-                  autoPlay
-                  controls
-                  playsInline
-                />
-              )}
-
-              {isOpen && !isVideoPlaying && (
+              {isOpen && (
                 <>
                   <img
                     className="letter-cover"
@@ -65,13 +48,26 @@ function EnvelopeComponent() {
                     alt="Happy Birthday"
                   />
                   <button
-                    className="letter-play-button"
+                    className={`letter-play-button ${isPlaying ? "playing" : ""}`}
                     type="button"
-                    aria-label="Play birthday video"
-                    onClick={handlePlay}
+                    aria-label={
+                      isPlaying ? "Pause voice message" : "Play voice message"
+                    }
+                    onClick={toggleAudio}
                   >
-                    <span aria-hidden="true">&#9654;</span>
+                    <span aria-hidden="true">
+                      {isPlaying ? "\u23F8" : "\u25B6"}
+                    </span>
                   </button>
+
+                  <audio
+                    ref={audioRef}
+                    src={AUDIO_SRC}
+                    preload="auto"
+                    onPlay={() => setIsPlaying(true)}
+                    onPause={() => setIsPlaying(false)}
+                    onEnded={() => setIsPlaying(false)}
+                  />
                 </>
               )}
             </div>

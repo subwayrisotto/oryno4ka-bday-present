@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const B_DAY = "8.10";
+const B_DAY = "11.10";
 const VIDEO_URL =
   "https://www.youtube.com/embed/yuIdcXnixqo?autoplay=1&playsinline=1";
 
